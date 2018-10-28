@@ -36,15 +36,16 @@ if(!$quote_type) {
 
 $wf_email  = urlDecode($wf_email).'.png';
 
-get_header();
+get_header(); 
 
 /*
-$plugin_public = new Monster_Pack_Public( 'Monster Pack', '1.0.2');
+$plugin_public = new Monster_Pack_Public( 'Solar Promo', '1.0.1');
 $path_email1 =  $plugin_public->get_service() ."crons/track_clicks.php?lead_id=$lead_id&email_name=$wf_email";
 $ch_email1 = curl_init($path_email1);
 $result_email1 = curl_exec($ch_email1);    
 curl_close($ch_email1);
 */
+
 ?>
 
 <style>
@@ -802,7 +803,21 @@ curl_close($ch_email1);
             jQuery.ajax({
                 url: jQuery.trim(monster_pack_ajax_script.ajaxurl),
                 type: "POST",
-                data: '&action=CheckLeadInfo&subs=check&order_form_id=' + jQuery("#promo_leadID").val() + '&promo_wf_email=' +  jQuery("#promo_wf_email").val(),
+                data: '&action=RecordClicks&subs=check&order_form_id=' + jQuery("#promo_leadID").val() + 
+                '&promo_wf_email=' +  jQuery("#promo_wf_email").val(),
+                success: function (response) {
+                     console.log('RecordClicks :'+JSON . stringify(response)); 
+                },
+                error: function (response) {
+                    console.log('RecordClicks Error:' + JSON.stringify(response));
+                }
+            })
+
+            jQuery.ajax({
+                url: jQuery.trim(monster_pack_ajax_script.ajaxurl),
+                type: "POST",
+                data: '&action=CheckLeadInfo&subs=check&order_form_id=' + jQuery("#promo_leadID").val() + 
+                '&promo_wf_email=' +  jQuery("#promo_wf_email").val(),
                 success: function (response) {
                     response = JSON.parse(response);
 

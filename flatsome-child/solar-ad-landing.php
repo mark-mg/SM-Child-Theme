@@ -1,31 +1,37 @@
 <?php
 /**
-Template Name: Solar Campaign
+Template Name: Solar Ad Landing
 */
  
 global $site_url, $template_url, $navbar;
 $site_url = site_url();  
 
 $varTest = get_query_var( 'leadID', 0 ); 
-$show_blurb = ''; 
-$title = 'Start Going Solar Today!';
- 
 if(is_numeric($varTest)) {
-    $varTest = "";
+    $varTest = ""; 
 } 
+
 $varTest = urlDecode($varTest);
+$varTest = str_replace(array("+", "-"), " ", $varTest);  
+
+$show_blurb = '';   
 $varTest2 = strtolower($varTest);
+
 if (strpos($varTest2, 'agl') !== false) {
     $show_blurb = 'agl';  
-    $title = "Looking to Compare AGL Solar Quote?"; 
+    $title = "Looking to Compare <br> $varTest Quote?"; 
 }else if (strpos($varTest2, 'origin') !== false) {
     $show_blurb = 'origin';  
-    $title = "Looking to Compare Origin Solar Quote?"; 
+    $title = "Looking to Compare <br> $varTest Quote?"; 
 }else if (strpos($varTest2, 'energy') !== false) {
     $show_blurb = 'ea';  
-    $title = "Looking to Compare Energy Australia Quote?"; 
-}   
-
+    $title = "Looking to Compare <br> $varTest Quote?"; 
+}else if($varTest2 == ""){
+    $title = 'Start Going Solar Today!'; 
+}else{
+    $title = $varTest; 
+}
+ 
 $device_type = get_user_device();
 get_header();
 
@@ -69,6 +75,9 @@ get_header();
     }
     .mt-15{
         margin-top:15px;
+    }
+    .mt-20{
+        margin-top:20px;
     }
     .mt-50{
         margin-top:50px;
@@ -734,7 +743,7 @@ get_header();
             <div class="col large-4 medium-4 !important; text-center">&nbsp;</div>
 
             <div class="col large-4 medium-4 small-12 text-center">
-                <form class="row mb-30 " method="POST" id="campaign-form">
+                <form class="row mb-30" method="POST" id="campaign-form">
                     <div class="form-group large-12 medium-12 small-12 headings">
                         <h3>FREE SOLAR QUOTE</h3>
                     </div>
@@ -763,7 +772,7 @@ get_header();
                     </div>
                     <div class="clearfix"></div>
                     <div class="large-12 mt-15">
-                        <button class="grediant-button cnfm_btn font-21" id="fbform-btn2" type="submit">Download Quote</button>
+                        <button class="grediant-button cnfm_btn font-21" id="fbform-btn2" type="submit">Get Quote</button>
                         <input type="hidden" name="campaign_action" id="action" value="Save Step 1" />
                         <input type="hidden" name="campaign_page_type" id="page_type" value="<?php echo 'residential'; ?>" />
                         <input type="hidden" name="campaign_source" id="source" value="<?php echo $source; ?>" />
@@ -781,8 +790,7 @@ get_header();
 
                 <form class="row d-none" method="POST" id="campaign-form2">
                     <div class="form-group large-12 medium-12 small-12 headings">
-                        <h3>Get Your Personal <br>Solar Quote Now</h3>
-                        <br>
+                        <h3>Get Your Personal <br>Solar Quote Now</h3> 
                     </div>
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                         <input type="text" name="campaign_step_address" id="campaign_step_address" placeholder="Full Address (Need to look at your roof space)"
@@ -840,8 +848,8 @@ get_header();
                     <div class="clearfix"></div>
                     <div class="col-md-12 mt-15">
                         <button class="grediant-button cnfm_btn font-21" type="submit" id="bill_btn">Download</button>
-                        <p class="text-center mt-18">
-                            <img src="<?php echo $template_url; ?>/images/trust-poliot-big-black.png" alt="" width="80" />
+                        <p class="text-center mt-20 mb-30">
+                            <img src="<?php echo get_stylesheet_directory_uri();?>/images/trust-poliot-big-black.png" alt="" width="80" />
                         </p>
                     </div>
                 </form>
@@ -849,12 +857,9 @@ get_header();
                 <div class="clearfix"></div>
                 <div id="campaign-form3" class='headings d-none'>
                     <h3 class="font-50 mt-30 mb-30 pos-rel">Thank you!</h3>
-                    <p class="color-w font-16 lh-25">Your download should begin shortly. If it does not, please use the
-                        <a target="_blank" download href="" style="color: #f5ba31" class="dwnld_link">direct
-                            link</a> otherwise check the email address you provided.</p>
+                    <p class="color-w font-16 lh-25">One of our solar consultants will contact you shortly and send you your personalized quote.</p>                   
                 </div>
-            </div>
-
+            </div> 
             <div class="col large-4 medium-4 !important;  text-center">&nbsp;</div>
 
         </div>
@@ -1004,7 +1009,7 @@ get_header();
             <p class="mb-5"><i class="code">FREE Solar Quote</i></p>
             <p class="show-for-small"><a href="#anchor1" class="button grediant-button mbl_tag_btn" role="button">Download
                     Quote</a></p>
-            <p class="hide-for-small"><a href="#anchor1" class="button grediant-button" role="button">Download Quote</a></p>
+            <p class="hide-for-small"><a href="#anchor1" class="button grediant-button" role="button">Get Quote</a></p>
         </div>
     </div>
 
@@ -1062,6 +1067,7 @@ get_header();
 
 <?php get_footer(); ?>
 
-<script type="text/javascript">
-    document.title = document.getElementById("page_title").value;
+<script type="text/javascript"> 
+    var title = document.getElementById("page_title").value;
+    document.title = title.replace("<br>", "");
 </script>
