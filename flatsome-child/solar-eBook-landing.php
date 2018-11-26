@@ -1,6 +1,6 @@
 <?php
 /**
-Template Name: Solar Ad Landing
+Template Name: Solar eBook Landing
 */
  
 global $site_url, $template_url, $navbar;
@@ -26,11 +26,8 @@ if (strpos($varTest2, 'agl') !== false) {
 }else if (strpos($varTest2, 'energy') !== false) {
     $show_blurb = 'ea';  
     $title = "Looking to Compare <br> $varTest Quote?"; 
-}else if(strpos($varTest2, 'ebook') !== false) {
-    $show_blurb = 'ebook';
-    $title = 'Start Your Solar Journey!'; 
 }else if($varTest2 == ""){
-    $title = 'Start Going Solar Today!'; 
+    $title = 'Start Your Solar Journey!'; 
 }else{
     $title = $varTest; 
 }
@@ -41,29 +38,31 @@ get_header();
 ?>
 
 <style>
-     .img-cn{
+    .img-cn{
         overflow:hidden;
     } 
-    .img-cn img{
+    .img-cn img{ 
         position: absolute;
-        left: 0px;
-        top: 30px;
+        left: -30px;
+        top: -20px;
+        /* height: 160%;
+        width: 160%; */
     }
     .cn {
         display: table-cell;
         width: 500px;
-        height: 500px;
+        height: 300px;
         vertical-align: middle;
         text-align: center;
     }
 
     .cn-inner {
-        display: inline-block; 
-        height: 150px;
+        display: inline-block;
+        width: 200px; height: 150px;
     }
 
     .cn-tag-title{
-        font-size: 35px;
+        font-size: 22px;
         line-height: 50px;
         height: 50px;
         text-align: center;
@@ -142,7 +141,7 @@ get_header();
     .headings img{
         width: 350px;
     }
-    #ebook-form,#ebook-form2,#campaign-form,#campaign-form2{
+    #ebook-form,#ebook-form2{
         max-width: 450px; 
     }
     .bg-animate{        
@@ -638,13 +637,6 @@ get_header();
     }
 
     @media(max-width:500px) { 
-        .solar-code{
-            margin: 0;
-            font-size: 25px;
-            color: white !important;
-            font-style: italic;
-            font-weight: 700;
-        }
         .blue-gradient-bg{
             background: linear-gradient(135deg, #19aae1 11%, #3c4bb3 100%);
             background-image: linear-gradient(135deg, rgb(25, 170, 225) 11%, rgb(60, 75, 179) 100%);
@@ -658,17 +650,11 @@ get_header();
             color: rgb(255,255,255);
             margin: 15px auto 0px; 
         }
-        .ebook-headings button{
-            font-size: 16px !important; 
-        }
+
         .headings button{
             font-size: 18px;
             margin: 30px auto;
-        }   
-        .ebook-headings p{
-            margin-bottom: 20px !important;
-            color: white !important;
-        }
+        }    
         .headings p{
             margin-bottom: 30px;
             font-size: 20px;
@@ -680,17 +666,13 @@ get_header();
             margin-top: 30px;
             width: 250px;
         }
-        .ebook-headings img{
-            width: auto !important;
-            margin-top: 0px !important;
-        }
         .who-we-are p{
             padding: 10px 35px;
         }
         .who-we-are h3{
             margin: 10px;
         }
-        #ebook-form, #ebook-form2, #campaign-form, #campaign-form2{
+        #ebook-form, #ebook-form2{
             max-width: 350px;
             margin-left: auto; 
             margin-right: auto;
@@ -766,7 +748,9 @@ get_header();
 <div class="header">
     <div class="container">
         <div class="logo">
-            <a href="<?php echo $site_url; ?>"><img src="http://solarmonster1.wpengine.com/wp-content/uploads/2018/08/Asset-1-compressor.png" /></a>
+            <a href="<?php echo $site_url; ?>">
+                <img src="http://solarmonster1.wpengine.com/wp-content/uploads/2018/08/Asset-1-compressor.png" />
+            </a>
         </div>
         <a href="tel:1300 383 031" class="call-now"><i class="icon-phone"></i> 1300 383 031</a>
     </div>
@@ -774,29 +758,19 @@ get_header();
 
 
 <div class="solar-landing-page">
-    <?php if($show_blurb =='ebook'){  ?>
-        <div class="row ebook-headings headings show-for-small mbl_head"> 
-            <div class="col large-12 medium-12 small-12 text-center bg-animate">
-                <h3 class="m-30">
-                    <?php echo $title ?>
-                </h3>
-                <p>FREE SOLAR eBOOK</p>
-                <img class="ml-50" src="<?php echo get_stylesheet_directory_uri();?>/images/eBook-compressor.png" alt="" />
-                <button type="submit" class="grediant-button mbl_tag_btn">Free Download</button>
-            </div>
+    <div class="row headings show-for-small mbl_head">
+        <div class="col large-12 medium-12 small-12 text-center blue-gradient-bg">
+            <h3>
+                <?php echo $title ?>
+            </h3>
+            <p>FREE SOLAR eBOOK</p>
         </div>
-    <?php } else {  ?>
-        <div class="row headings show-for-small mbl_head">
-            <div class="col large-12 medium-12 small-12 text-center blue-gradient-bg">
-                <h3><?php echo $title ?></h3>
-                <p>FREE SERVICE</p>
-            </div>
-            <div class="col large-12 medium-12 small-12 text-center green-gradient-bg">
-                <img src="<?php echo get_stylesheet_directory_uri();?>/images/Small-c.png" alt="" />
-                <button type="submit" class="grediant-button mbl_tag_btn">Get Solar Quote</button>
-            </div>
+        <div class="col large-12 medium-12 small-12 text-center green-gradient-bg">
+            <img class="ml-50" src="<?php echo get_stylesheet_directory_uri();?>/images/eBook-compressor.png" alt="" />
+            <button type="submit" class="grediant-button mbl_tag_btn">Free Download</button>
         </div>
-    <?php } ?>
+    </div>
+
 
     <div id="anchor1" class='bg-animate hide-for-small'>
         <div class="row">
@@ -808,78 +782,73 @@ get_header();
         </div>
         <div class="row">
             <div class="col large-12 medium-12 small-12 text-center headings">
-                <?php if($show_blurb =='ebook'){  ?>
-                    <img class="ml-50" src="<?php echo get_stylesheet_directory_uri();?>/images/eBook-compressor.png" alt="" />
-                <?php } else {  ?>
-                    <img src="<?php echo get_stylesheet_directory_uri();?>/images/Small-c.png" alt="" />
-                <?php } ?> 
+                <img class="ml-50" src="<?php echo get_stylesheet_directory_uri();?>/images/eBook-compressor.png" alt="" />
             </div>
 
-            <div class="col large-4 medium-3">&nbsp;</div>
-
+            <div class="col large-4 medium-3">&nbsp;</div> 
             <div class="col large-4 medium-6 small-12 text-center">
-                <form class="row mb-30" method="POST" id="campaign-form">
-                    <div class="form-group large-12 medium-12 small-12 headings"> 
-                        <h3>FREE SOLAR <?php echo (($show_blurb =='ebook') ?  'eBOOK' : 'QUOTE'); ?></h3> 
+                <form class="row mb-30" method="POST" id="ebook-form">
+                    <div class="form-group large-12 medium-12 small-12 headings">
+                        <h3>FREE SOLAR eBOOK</h3>
                     </div>
                     <div class="form-group large-12 medium-12 small-12">
-                        <input type="text" name="campaign_firstname" id="campaign_firstname" placeholder="First Name"
+                        <input type="text" name="ebook_firstname" id="ebook_firstname" placeholder="First Name"
                             class="form-control round-border-input required">
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group large-6 medium-6 small-6 pr-4">
-                        <input type="text" name="campaign_contact" id="campaign_contact" placeholder="Contact Number"
+                        <input type="text" name="ebook_contact" id="ebook_contact" placeholder="Contact Number"
                             class="form-control round-border-input required validnumber">
                     </div>
                     <div class="form-group large-6 medium-6 small-6 pl-4">
-                        <input type="text" name="campaign_postcode" id="campaign_postcode" placeholder="Postcode"
+                        <input type="text" name="ebook_postcode" id="ebook_postcode" placeholder="Postcode"
                             minlength="3" maxlength="4" class="form-control round-border-input required" />
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group large-12 medium-12 small-12">
-                        <input type="email" name="campaign_email" id="campaign_email" placeholder="Email" class="form-control round-border-input required">
+                        <input type="email" name="ebook_email" id="ebook_email" placeholder="Email" class="form-control round-border-input required">
                     </div>
                     <div class="clearfix"></div>
-                    <div class="col medium-12 small-12 large-12 d-none" id="campaign-form-error" name="campaign-form-error">
+                    <div class="col medium-12 small-12 large-12 d-none" id="ebook-form-error" name="ebook-form-error">
                         <span class="error">
                             Please provide the required information.
                         </span>
                     </div>
                     <div class="clearfix"></div>
                     <div class="large-12 mt-15">
-                        <button class="grediant-button cnfm_btn font-21" id="fbform-btn2" type="submit">Get Quote</button>
-                        <input type="hidden" name="campaign_action" id="action" value="Save Step 1" />
-                        <input type="hidden" name="campaign_page_type" id="page_type" value="<?php echo 'residential'; ?>" />
-                        <input type="hidden" name="campaign_source" id="source" value="<?php echo $source; ?>" />
-                        <input type="hidden" name="campaign_adset_id" id="adset_id" value="" />
-                        <input type="hidden" name="campaign_solar_form" id="solar_form" value="yes" />
+                        <button class="grediant-button cnfm_btn font-21" id="fbform-btn2" type="submit">Free Download</button>
+                        <input type="hidden" name="ebook_action" id="action" value="Save Step 1" />
+                        <input type="hidden" name="ebook_page_type" id="page_type" value="<?php echo 'residential'; ?>" />
+                        <input type="hidden" name="ebook_source" id="source" value="<?php echo $source; ?>" />
+                        <input type="hidden" name="ebook_adset_id" id="adset_id" value="" />
+                        <input type="hidden" name="ebook_solar_form" id="solar_form" value="yes" />
                     </div>
                     <div class="clearfix"></div>
                     <div class="large-12 mt-15">
-                        <p class="tnc">By clicking submit you are agreeing to our 
+                        <p class="tnc">By clicking submit you are agreeing to our
                             <a href='<?php echo $site_url; ?>/terms-and-conditions/' target='_blank' style="color:white;">
-                            terms & conditions</a>
+                                terms & conditions</a>
                         </p>
                     </div>
                 </form>
 
-                <form class="row d-none" method="POST" id="campaign-form2">
+                <form class="row d-none" method="POST" id="ebook-form2">
                     <div class="form-group large-12 medium-12 small-12 headings">
-                        <h3><?php echo (($show_blurb =='ebook') ?  'Complete to Download <br>Your eBook' : 'Get Your Personal <br>Solar Quote Now'); ?></h3>                         
+                        <h3>Complete to Download <br>Your eBook</h3>
                     </div>
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                        <input type="text" name="campaign_step_address" id="campaign_step_address" placeholder="Full Address (Need to look at your roof space)"
+                        <input type="text" name="ebook_step_address" id="ebook_step_address" placeholder="Full Address (Need to look at your roof space)"
                             class="form-control round-border-input required" />
-                        <input type="hidden" name="campaign_step_street_name" id="campaign_step_street_name" />
-                        <input type="hidden" name="campaign_step_suburb" id="campaign_step_suburb" />
-                        <input type="hidden" name="campaign_step_state" id="campaign_step_state" />
-                        <input type="hidden" name="campaign_step_country" id="campaign_step_country" />
-                        <input type="hidden" name="campaign_step_postcode" id="campaign_step_postcode" value="" />
+                        <input type="hidden" name="ebook_step_street_name" id="ebook_step_street_name" />
+                        <input type="hidden" name="ebook_step_suburb" id="ebook_step_suburb" />
+                        <input type="hidden" name="ebook_step_state" id="ebook_step_state" />
+                        <input type="hidden" name="ebook_step_country" id="ebook_step_country" />
+                        <input type="hidden" name="ebook_step_postcode" id="ebook_step_postcode" value="" />
                         <div id="map-canvas" name="map-canvas"></div>
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                        <select class="btn-select-box required" id="campaign_step_quarter_bill" name="campaign_step_quarter_bill">
+                        <select class="btn-select-box required" id="ebook_step_quarter_bill" name="ebook_step_quarter_bill">
                             <option value="">How Much is Your Quaterly Electricity Bill?</option>
                             <option value="< $200">
                                 < $200</option> <option value="$200 - $349">$200 - $349
@@ -892,7 +861,7 @@ get_header();
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                        <select class="btn-select-box  required" id="campaign_step_retailer" name="campaign_step_retailer">
+                        <select class="btn-select-box  required" id="ebook_step_retailer" name="ebook_step_retailer">
                             <option value="">Electricity Provider</option>
                             <option value="Energy Australia">Energy Australia</option>
                             <option value="Origin Energy">Origin Energy</option>
@@ -915,7 +884,7 @@ get_header();
                         </select>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="col medium-12 small-12 large-12 d-none" id="campaign-form2-error" name="campaign-form2-error">
+                    <div class="col medium-12 small-12 large-12 d-none" id="ebook-form2-error" name="ebook-form2-error">
                         <span class="error">
                             Please provide the required information.
                         </span>
@@ -924,25 +893,21 @@ get_header();
                     <div class="col-md-12 mt-15">
                         <button class="grediant-button cnfm_btn font-21" type="submit" id="bill_btn">Download</button>
                         <p class="text-center mt-20 mb-30">
-                            <img src="<?php echo get_stylesheet_directory_uri();?>/images/trust-poliot-big-black.png" alt="" width="80" />
+                            <img src="<?php echo get_stylesheet_directory_uri();?>/images/trust-poliot-big-black.png"
+                                alt="" width="80" />
                         </p>
                     </div>
                 </form>
 
                 <div class="clearfix"></div>
-                <div id="campaign-form3" class='headings d-none'>
+                <div id="ebook-form3" class='headings d-none'> 
                     <h3 class="font-50 mt-30 mb-30 pos-rel">Thank you!</h3>
-                    <?php if($show_blurb =='ebook'){  ?>
-                        <p class="color-w font-16 lh-25">Your download should begin shortly. If it does not, please use the
-                        <a target="_blank" download href="<?php echo get_stylesheet_directory_uri();?>/docs/eBook.pdf" style="color: #f5ba31" class="solar_dwnld_link">direct
+                    <p class="color-w font-16 lh-25">Your download should begin shortly. If it does not, please use the
+                        <a target="_blank" download href="<?php echo get_stylesheet_directory_uri();?>/docs/eBook.pdf" style="color: #f5ba31" class="dwnld_link">direct
                             link</a> otherwise check the email address you provided.</p>
-                    <?php } else {  ?>
-                        <p class="color-w font-16 lh-25">One of our solar consultants will contact you shortly and send you your personalized quote.</p>                   
-                    <?php }  ?>                    
                 </div>
-            </div> 
-            <div class="col large-4 medium-3">&nbsp;</div>
-
+            </div>
+            <div class="col large-4 medium-3">&nbsp;</div> 
         </div>
     </div>
 
@@ -1018,116 +983,160 @@ get_header();
     </div>
 
     <?php if($show_blurb=='agl') { ?>
-        <div class="code-section light-gray-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col large-12 medium-12 small-12 text-center  mt-50">
-                        <h3 class='tag-title'>AGL SOLAR</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col large-6 medium-6 small-12 text-left lh-25">
-                        <p>More and more Australians are getting into renewable energy, and AGL solar programmes are becoming increasingly popular every day. In 2017, Australia added 1.3 gigawatts of total solar power into the network, and some analysts are predicting that number to triple in 2018! Finding a way to get in on the renewables craze can be a struggle, but with AGL you can get all your renewable needs satisfied in one place. Whether you need panels, a battery, and inverter or any other solar needs they might be a great option for you.</p>
-                        <p>Installing some solar panels can really help you save on your energy bills. The way this works is your solar panels will generate electricity during the day, which is then fed into your inverter, and into your home. If you end up feeding more electricity back into the grid than you use, you’ll get an energy credit on your power bill. This credit will reduce the size of your power bill, leaving you with more money at the end of the week. Not to mention the money you could save on your power bill could help cover the cost of the system. It might just pay for itself!</p>
-                        <p>Having some high-quality solar panels installed isn’t just a great way to save on power. Installing AGL solar panels can also help you save the environment.</p>
-                    </div>
-                    <div class="col large-6 medium-6 small-12 text-left lh-25">
-                        <p>The great majority of energy consumed in Australia comes from fossil fuels. This means, coal and oil. The carbon cost of these products is massive. On the other hand, AGL solar panels are renewable energy, so you really have nothing to worry about.</p>
-                        <p>In a country where the regular consumer has been subjected to outrageous prices for such a long time, isn’t it about time you took charge of your energy needs? Installing solar makes absolute sense. Whether you live in NSW, Queensland, Victoria or South Australia it’s definitely something you should be thinking about. Especially if you’re environmentally conscious or just looking to save a few bucks.</p>
-                        <p>If you’re interested in learning more about solar, give us a call here at Electricity Monster! Our number is 1300 584 872, and our brokers would love to talk with you. Not only can we help you with a new connection, or help you compare rates, we can also sort you out with a quote on solar systems.</p>
-                    </div>
+    <div class="code-section light-gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col large-12 medium-12 small-12 text-center  mt-50">
+                    <h3 class='tag-title'>AGL SOLAR</h3>
                 </div>
             </div>
-        </div> 
+            <div class="row">
+                <div class="col large-6 medium-6 small-12 text-left lh-25">
+                    <p>More and more Australians are getting into renewable energy, and AGL solar programmes are
+                        becoming increasingly popular every day. In 2017, Australia added 1.3 gigawatts of total solar
+                        power into the network, and some analysts are predicting that number to triple in 2018! Finding
+                        a way to get in on the renewables craze can be a struggle, but with AGL you can get all your
+                        renewable needs satisfied in one place. Whether you need panels, a battery, and inverter or any
+                        other solar needs they might be a great option for you.</p>
+                    <p>Installing some solar panels can really help you save on your energy bills. The way this works
+                        is your solar panels will generate electricity during the day, which is then fed into your
+                        inverter, and into your home. If you end up feeding more electricity back into the grid than
+                        you use, you’ll get an energy credit on your power bill. This credit will reduce the size of
+                        your power bill, leaving you with more money at the end of the week. Not to mention the money
+                        you could save on your power bill could help cover the cost of the system. It might just pay
+                        for itself!</p>
+                    <p>Having some high-quality solar panels installed isn’t just a great way to save on power.
+                        Installing AGL solar panels can also help you save the environment.</p>
+                </div>
+                <div class="col large-6 medium-6 small-12 text-left lh-25">
+                    <p>The great majority of energy consumed in Australia comes from fossil fuels. This means, coal and
+                        oil. The carbon cost of these products is massive. On the other hand, AGL solar panels are
+                        renewable energy, so you really have nothing to worry about.</p>
+                    <p>In a country where the regular consumer has been subjected to outrageous prices for such a long
+                        time, isn’t it about time you took charge of your energy needs? Installing solar makes absolute
+                        sense. Whether you live in NSW, Queensland, Victoria or South Australia it’s definitely
+                        something you should be thinking about. Especially if you’re environmentally conscious or just
+                        looking to save a few bucks.</p>
+                    <p>If you’re interested in learning more about solar, give us a call here at Electricity Monster!
+                        Our number is 1300 584 872, and our brokers would love to talk with you. Not only can we help
+                        you with a new connection, or help you compare rates, we can also sort you out with a quote on
+                        solar systems.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <?php } else if($show_blurb=='origin') { ?>
-        <div class="code-section light-gray-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col large-12 medium-12 small-12 text-center mt-50">
-                        <h3 class='tag-title'>Origin Solar</h3>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col large-6 medium-6 small-12 text-left lh-25">
-                        <p>More and more Australians are getting into renewable energy, and Origin solar programmes are becoming increasingly popular every day. In 2017, Australia added 1.3 gigawatts of total solar power into the network, and some analysts are predicting that number to triple in 2018! Finding a way to get in on the renewables craze can be a struggle, but with Origin you can get all your renewable needs satisfied in one place. Whether you need panels, a battery, and inverter or any other solar needs they might be a great option for you.</p>
-                        <p>Installing some solar panels can really help you save on your energy bills. The way this works is your solar panels will generate electricity during the day, which is then fed into your inverter, and into your home. If you end up feeding more electricity back into the grid than you use, you’ll get an energy credit on your power bill. This credit will reduce the size of your power bill, leaving you with more money at the end of the week. Not to mention the money you could save on your power bill could help cover the cost of the system. It might just pay for itself!</p>
-                        <p>Having some high-quality solar panels installed isn’t just a great way to save on power. Installing Origin solar panels can also help you save the environment.</p>
-                    </div>
-                    <div class="col large-6 medium-6 small-12 text-left lh-25">
-                        <p>The great majority of energy consumed in Australia comes from fossil fuels. This means, coal and oil. The carbon cost of these products is massive. On the other hand, Origin solar panels are renewable energy, so you really have nothing to worry about.</p>
-                        <p>In a country where the regular consumer has been subjected to outrageous prices for such a long time, isn’t it about time you took charge of your energy needs? Installing solar makes absolute sense. Whether you live in NSW, Queensland, Victoria or South Australia it’s definitely something you should be thinking about. Especially if you’re environmentally conscious or just looking to save a few bucks.</p>
-                        <p>If you’re interested in learning more about solar, give us a call here at Electricity Monster! Our number is 1300 584 872, and our brokers would love to talk with you. Not only can we help you with a new connection, or help you compare rates, we can also sort you out with a quote on solar systems.</p>
-                    </div>
+    <div class="code-section light-gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col large-12 medium-12 small-12 text-center mt-50">
+                    <h3 class='tag-title'>Origin Solar</h3>
                 </div>
             </div>
-        </div> 
+            <div class="row">
+                <div class="col large-6 medium-6 small-12 text-left lh-25">
+                    <p>More and more Australians are getting into renewable energy, and Origin solar programmes are
+                        becoming increasingly popular every day. In 2017, Australia added 1.3 gigawatts of total solar
+                        power into the network, and some analysts are predicting that number to triple in 2018! Finding
+                        a way to get in on the renewables craze can be a struggle, but with Origin you can get all your
+                        renewable needs satisfied in one place. Whether you need panels, a battery, and inverter or any
+                        other solar needs they might be a great option for you.</p>
+                    <p>Installing some solar panels can really help you save on your energy bills. The way this works
+                        is your solar panels will generate electricity during the day, which is then fed into your
+                        inverter, and into your home. If you end up feeding more electricity back into the grid than
+                        you use, you’ll get an energy credit on your power bill. This credit will reduce the size of
+                        your power bill, leaving you with more money at the end of the week. Not to mention the money
+                        you could save on your power bill could help cover the cost of the system. It might just pay
+                        for itself!</p>
+                    <p>Having some high-quality solar panels installed isn’t just a great way to save on power.
+                        Installing Origin solar panels can also help you save the environment.</p>
+                </div>
+                <div class="col large-6 medium-6 small-12 text-left lh-25">
+                    <p>The great majority of energy consumed in Australia comes from fossil fuels. This means, coal and
+                        oil. The carbon cost of these products is massive. On the other hand, Origin solar panels are
+                        renewable energy, so you really have nothing to worry about.</p>
+                    <p>In a country where the regular consumer has been subjected to outrageous prices for such a long
+                        time, isn’t it about time you took charge of your energy needs? Installing solar makes absolute
+                        sense. Whether you live in NSW, Queensland, Victoria or South Australia it’s definitely
+                        something you should be thinking about. Especially if you’re environmentally conscious or just
+                        looking to save a few bucks.</p>
+                    <p>If you’re interested in learning more about solar, give us a call here at Electricity Monster!
+                        Our number is 1300 584 872, and our brokers would love to talk with you. Not only can we help
+                        you with a new connection, or help you compare rates, we can also sort you out with a quote on
+                        solar systems.</p>
+                </div>
+            </div>
+        </div>
+    </div>
     <?php } else if($show_blurb=='ea') { ?>
-        <div class="code-section light-gray-bg">
-            <div class="container">
-                <div class="row">
-                    <div class="col large-12 medium-12 small-12 text-center mt-50">
-                        <h3 class='tag-title'>Energy Australia Solar</h3>
-                    </div> 
+    <div class="code-section light-gray-bg">
+        <div class="container">
+            <div class="row">
+                <div class="col large-12 medium-12 small-12 text-center mt-50">
+                    <h3 class='tag-title'>Energy Australia Solar</h3>
                 </div>
-                <div class="row">
-                    <div class="col large-6 medium-6 small-12 text-left lh-25">
-                        <p>More and more Australians are getting into renewable energy, and Energy Australia solar programmes are becoming increasingly popular every day. In 2017, Australia added 1.3 gigawatts of total solar power into the network, and some analysts are predicting that number to triple in 2018! Finding a way to get in on the renewables craze can be a struggle, but with Energy Australia you can get all your renewable needs satisfied in one place. Whether you need panels, a battery, and inverter or any other solar needs they solar might be a great option for you.</p>
-                        <p>Installing some solar panels can really help you save on your energy bills. The way this works is your solar panels will generate electricity during the day, which is then fed into your inverter, and into your home. If you end up feeding more electricity back into the grid than you use, you’ll get an energy credit on your power bill. This credit will reduce the size of your power bill, leaving you with more money at the end of the week. Not to mention the money you could save on your power bill could help cover the cost of the system. It might just pay for itself!</p>                        
-                    </div>
-                    <div class="col large-6 medium-6 small-12 text-left lh-25">
-                        <p>Having some high-quality solar panels installed isn’t just a great way to save on power. Installing Energy Australia solar panels can also help you save the environment. The great majority of energy consumed in Australia comes from fossil fuels. This means, coal and oil. The carbon cost of these products is massive. On the other hand, Energy Australia solar panels are renewable energy, so you really have nothing to worry about.</p>
-                        <p>In a country where the regular consumer has been subjected to outrageous prices for such a long time, isn’t it about time you took charge of your energy needs? Installing solar makes absolute sense. Whether you live in NSW, Queensland, Victoria or South Australia it’s definitely something you should be thinking about. Especially if you’re environmentally conscious or just looking to save a few bucks.</p>
-                        <p>If you’re interested in learning more about solar, give us a call here at Electricity Monster! Our number is 1300 584 872, and our brokers would love to talk with you. Not only can we help you with a new connection, or help you compare rates, we can also sort you out with a quote on solar systems.</p>
-                    </div>
+            </div>
+            <div class="row">
+                <div class="col large-6 medium-6 small-12 text-left lh-25">
+                    <p>More and more Australians are getting into renewable energy, and Energy Australia solar
+                        programmes are becoming increasingly popular every day. In 2017, Australia added 1.3 gigawatts
+                        of total solar power into the network, and some analysts are predicting that number to triple
+                        in 2018! Finding a way to get in on the renewables craze can be a struggle, but with Energy
+                        Australia you can get all your renewable needs satisfied in one place. Whether you need panels,
+                        a battery, and inverter or any other solar needs they solar might be a great option for you.</p>
+                    <p>Installing some solar panels can really help you save on your energy bills. The way this works
+                        is your solar panels will generate electricity during the day, which is then fed into your
+                        inverter, and into your home. If you end up feeding more electricity back into the grid than
+                        you use, you’ll get an energy credit on your power bill. This credit will reduce the size of
+                        your power bill, leaving you with more money at the end of the week. Not to mention the money
+                        you could save on your power bill could help cover the cost of the system. It might just pay
+                        for itself!</p>
+                </div>
+                <div class="col large-6 medium-6 small-12 text-left lh-25">
+                    <p>Having some high-quality solar panels installed isn’t just a great way to save on power.
+                        Installing Energy Australia solar panels can also help you save the environment. The great
+                        majority of energy consumed in Australia comes from fossil fuels. This means, coal and oil. The
+                        carbon cost of these products is massive. On the other hand, Energy Australia solar panels are
+                        renewable energy, so you really have nothing to worry about.</p>
+                    <p>In a country where the regular consumer has been subjected to outrageous prices for such a long
+                        time, isn’t it about time you took charge of your energy needs? Installing solar makes absolute
+                        sense. Whether you live in NSW, Queensland, Victoria or South Australia it’s definitely
+                        something you should be thinking about. Especially if you’re environmentally conscious or just
+                        looking to save a few bucks.</p>
+                    <p>If you’re interested in learning more about solar, give us a call here at Electricity Monster!
+                        Our number is 1300 584 872, and our brokers would love to talk with you. Not only can we help
+                        you with a new connection, or help you compare rates, we can also sort you out with a quote on
+                        solar systems.</p>
                 </div>
             </div>
         </div>
+    </div>
     <?php } ?>
 
-    
-
-    
-    <?php if($show_blurb =='ebook'){  ?>
-        <div class="code-section2 bg-animate">
-            <div class="container mt-15 show-for-small ">
-                <p class="headings">
-                    <img class="ml-50" src="<?php echo get_stylesheet_directory_uri();?>/images/eBook-compressor.png" alt="" />
-                </p>
-                <p class="solar-center-section">
-                    <i class="solar-code">FREE Solar eBook</i>
-                </p>
-                <p class="mb-5 solar-center-section">
-                    <a  href="javascript:void(0);" class="button grediant-button mbl_tag_btn mb-5 " role="button">Download Now</a>
-                </p>            
-            </div>
-            <div class="container mt-15 hide-for-small">
-                <div class="row">
-                    <div class="col large-6 medium-6"> 
-                        <div class="cn">
-                            <div class="cn-inner">
-                                <p class="mb-5"><i class="code cn-tag-title">FREE Solar eBook</i></p> 
-                                <p><a  href="#anchor1" class="button grediant-button" role="button">Download Now</a></p>
-                            </div>
+     <div class="code-section2 bg-animate">
+        <div class="container mt-15 show-for-small ">
+            <p class="headings">
+                <img class="ml-50" src="<?php echo get_stylesheet_directory_uri();?>/images/eBook-compressor.png" alt="" />
+            </p>
+            <p class="mb-5"><i class="code">FREE Solar eBook</i></p>
+            <p><a  href="javascript:void(0);" class="button grediant-button mbl_tag_btn" role="button">Download Now</a></p>            
+        </div>
+        <div class="container mt-15 hide-for-small">
+            <div class="row">
+                <div class="col large-6 medium-6"> 
+                    <div class="cn">
+                        <div class="cn-inner">
+                            <p class="mb-5"><i class="code cn-tag-title">FREE Solar eBook</i></p> 
+                            <p><a  href="#anchor1" class="button grediant-button" role="button">Download Now</a></p>
                         </div>
-                    </div> 
-                    <div class="col large-6 medium-6 img-cn"> 
-                        <img src="<?php echo get_stylesheet_directory_uri();?>/images/eBook-Page.png" alt="" />
-                    </div>   
-                </div>
-            </div>
-        </div> 
-    <?php } else {  ?>
-        <div class="code-section">
-            <div class="solar-landing-container mt-15">
-                <img src="<?php echo get_stylesheet_directory_uri();?>/images/Big-compressor.png" alt="" class="img-cta" />
-                <p class="mb-5"><i class="code">FREE Solar Quote</i></p>
-                <p class="show-for-small"><a href="javascript:void(0);" class="button grediant-button mbl_tag_btn" role="button">Download
-                        Quote</a></p>
-                <p class="hide-for-small"><a href="#anchor1" class="button grediant-button" role="button">Get Quote</a></p>
+                    </div>
+                </div> 
+                <div class="col large-6 medium-6 img-cn"> 
+                    <img src="<?php echo get_stylesheet_directory_uri();?>/images/eBook-compressor.png" alt="" />
+                </div>   
             </div>
         </div>
-    <?php } ?>
-   
+    </div> 
 
     <div class="trust-pliot">
         <div class="container">
@@ -1183,7 +1192,7 @@ get_header();
 
 <?php get_footer(); ?>
 
-<script type="text/javascript"> 
+<script type="text/javascript">
     var title = document.getElementById("page_title").value;
     document.title = title.replace("<br>", "");
 </script>
