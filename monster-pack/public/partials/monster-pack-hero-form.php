@@ -109,8 +109,8 @@
 
                 <div class="col medium-12 small-12 large-12">  
                     <select id="hero_quarter_bill" name="hero_quarter_bill" class="form-control" 
-                    style="border-radius: 10px;" placeholder="How Much is Your Quaterly Electricity Bill?" required="">
-                        <option value="">How Much is Your Quaterly Electricity Bill?</option>
+                    style="border-radius: 10px;" placeholder="Your Quaterly Electricity Bill" required="">
+                        <option value="">Your Quaterly Electricity Bill</option>
                         <option value="< $200">&lt; $200</option>
                         <option value="$200 - $349">$200 - $349</option>
                         <option value="$350 - $599">$350 - $599</option>

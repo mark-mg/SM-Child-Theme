@@ -13,14 +13,14 @@
         </div>
         <div class="col medium-4 small-6 large-4">
             <div class="col-inner text-center">
-                <button id="cta1-btn" type="button" class="button secondary expand cta1 cta-btn" style="color:black;background-color:white;">
+                <button id="cta1-btn" type="button" class="button secondary expand cta1 cta-btn" style="color:white;background-color:#1ec8dc;">
                     <span>SOLAR QUOTES</span>
                 </button>
             </div>
         </div>
         <div class="col medium-4 small-6 large-4">
             <div class="col-inner text-center">
-                <button id="cta2-btn" type="button" class="button primary expand cta2 cta-btn" style="color:black;background-color:white;">
+                <button id="cta2-btn" type="button" class="button primary expand cta2 cta-btn" style="color:white;background-color:#1ec8dc;">
                     <span>REQUEST A CALL</span>
                 </button>
             </div>
@@ -43,17 +43,7 @@
                     <div class="col medium-12 small-12 large-12">
                         <input id="cta_firstname" name="cta_firstname" type="text" class="form-control" placeholder="First name" required="" />
                     </div> 
-                </div>
-                <!--
-                <div class="row">
-                    <div class="col medium-6 small-6 large-6">
-                        <input id="cta_firstname" name="cta_firstname" type="text" class="form-control" placeholder="First name" required="" />
-                    </div>
-                    <div class="col medium-6 small-6 large-6">
-                        <input id="cta_lastname" name="cta_lastname" type="text" class="form-control" placeholder="Last name" required="" />
-                    </div>
-                </div>
-                -->
+                </div> 
                 <div class="row">
                     <div class="col medium-6 small-6 large-6">
                         <input type="text" id="cta_contact" name="cta_contact" class="form-control" placeholder="Contact Number" required="" />
@@ -71,8 +61,8 @@
                 <div class="row bill-estimate">
                     <div class="col medium-12 small-12 large-12">
                         <select id="cta_quarter_bill" name="cta_quarter_bill" class="form-control" 
-                        style="border-radius: 10px;" placeholder="How Much is Your Quaterly Electricity Bill?" required="">
-                            <option value="">How Much is Your Quaterly Electricity Bill?</option>
+                        style="border-radius: 10px;" placeholder="Your Quaterly Electricity Bill" required="">
+                            <option value="">Your Quaterly Electricity Bill</option>
                             <option value="< $200">&lt; $200</option>
                             <option value="$200 - $349">$200 - $349</option>
                             <option value="$350 - $599">$350 - $599</option>

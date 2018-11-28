@@ -1484,6 +1484,28 @@ function loadGMAP(fldName) {
 			}
 
 		});
+
+		if ($(window).width() <= 411) {  
+			if ( $( ".swap-span-text" ).length ) {
+				setInterval(function() {
+					$( ".swap-span-text" ).each(function( index ) {
+						if ( $( this ).hasClass('d-none')){
+							$( this ).removeClass('d-none');
+						}else{
+							$( this ).addClass('d-none');  
+						} 
+					});  
+				}, 2000);  
+			}     
+		}  
+
+		$("#download_notify").click(function (e) {
+			e.preventDefault();
+
+			$('html, body').animate({
+				scrollTop: $(".hero-calss").offset().top - 100
+			}, 500, 'linear');
+		})
 	})
 
 })(jQuery);
