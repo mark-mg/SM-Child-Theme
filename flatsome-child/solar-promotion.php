@@ -640,10 +640,10 @@ curl_close($ch_email1);
                             </div>  
 
                             <div class="col medium-6 small-6 large-6">
-                                <input type="text" class="form-control" id="promo_contact" name="promo_contact" placeholder="Contact Number" required="" />
+                                <input type="tel" class="form-control" id="promo_contact" name="promo_contact" placeholder="Contact Number" required="" />
                             </div>
                             <div class="col medium-6 small-6 large-6">
-                                <input type="text" class="form-control" id="promo_postcode" name="promo_postcode" placeholder="Post Code" required="" />
+                                <input type="tel" class="form-control" id="promo_postcode" name="promo_postcode" placeholder="Post Code" required="" />
                             </div>
 
                             <div class="col medium-12 small-12 large-12">
