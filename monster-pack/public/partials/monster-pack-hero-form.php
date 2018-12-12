@@ -58,10 +58,7 @@
         #hero_form, #hero_response, #hero_step2{
             height: 400px !important;
         }
-        .bannertext h1,
-        .bannertext p{
-            color:white !important;
-        }
+        
         .hero-calss .section-content{
             position: initial !important;
         }
@@ -97,10 +94,10 @@
                 </div>  
 
                 <div class="col medium-6 small-6 large-6">
-                    <input type="text" class="form-control" id="hero_contact" name="hero_contact" placeholder="Contact Number" required="" />
+                    <input type="tel" class="form-control" id="hero_contact" name="hero_contact" placeholder="Contact Number" required="" />
                 </div>
                 <div class="col medium-6 small-6 large-6">
-                    <input type="text" class="form-control" id="hero_postcode" name="hero_postcode" placeholder="Post Code" required="" />
+                    <input type="tel" class="form-control" id="hero_postcode" name="hero_postcode" placeholder="Post Code" required="" />
                 </div>
 
                 <div class="col medium-12 small-12 large-12">
@@ -109,8 +106,8 @@
 
                 <div class="col medium-12 small-12 large-12">  
                     <select id="hero_quarter_bill" name="hero_quarter_bill" class="form-control" 
-                    style="border-radius: 10px;" placeholder="Your Quaterly Electricity Bill" required="">
-                        <option value="">Your Quaterly Electricity Bill</option>
+                    style="border-radius: 10px;" placeholder="How Much is Your Quaterly Electricity Bill?" required="">
+                       <option value="">Your Quarterly Electricity Bill</option>
                         <option value="< $200">&lt; $200</option>
                         <option value="$200 - $349">$200 - $349</option>
                         <option value="$350 - $599">$350 - $599</option>

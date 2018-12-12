@@ -797,11 +797,11 @@ get_header();
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group large-6 medium-6 small-6 pr-4">
-                        <input type="text" name="ebook_contact" id="ebook_contact" placeholder="Contact Number"
+                        <input type="tel" name="ebook_contact" id="ebook_contact" placeholder="Contact Number"
                             class="form-control round-border-input required validnumber">
                     </div>
                     <div class="form-group large-6 medium-6 small-6 pl-4">
-                        <input type="text" name="ebook_postcode" id="ebook_postcode" placeholder="Postcode"
+                        <input type="tel" name="ebook_postcode" id="ebook_postcode" placeholder="Postcode"
                             minlength="3" maxlength="4" class="form-control round-border-input required" />
                     </div>
                     <div class="clearfix"></div>

@@ -117,7 +117,7 @@ function loadGMAP(fldName) {
 	'use strict';
 
 	$(document).ready(function () {
-
+		var attr =  null;
 		//https://manual.limesurvey.org/Using_regular_expressions
 		var regex = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 		$.validator.addMethod("emailStr", function (value, element) {
@@ -810,6 +810,8 @@ function loadGMAP(fldName) {
 
 		});
 
+	
+
 		$("#contact_form").validate({
 			ignore: '',
 			rules: {
@@ -921,9 +923,13 @@ function loadGMAP(fldName) {
 
 		$.fn.scrollView = function () {
 			return this.each(function () {
-				$('html, body').animate({
-					scrollTop: $(this).offset().top - 55
-				}, 1000);
+
+				attr = $(this).offset();
+				if (attr != null){
+					$('html, body').animate({
+						scrollTop: attr.top - 55
+					}, 1000);
+				}
 			});
 		}
 
@@ -1177,14 +1183,21 @@ function loadGMAP(fldName) {
 				}
 			});
 		})
-
-		$('a[href*="#"]').on('click', function (e) {
-			e.preventDefault();
-			$('html, body').animate({
-				scrollTop: $($(this).attr('href')).offset().top
-			}, 2000, 'linear');
+		 
+		$('a[href*="#"]').on('click', function (e) { 
+			var attr = $(this).attr('data-open');
+			if(attr == "#main-menu"){ 
+			}else{
+				e.preventDefault(); 
+				attr = $($(this).attr('href')).offset();
+				if (attr != null){
+					$('html, body').animate({
+						scrollTop: attr.top 
+					}, 2000, 'linear');
+				} 
+			} 
 		});
-
+		 
 		$("#clr-btn").click(function () {
 			$("#signature").jSignature("clear");
 			$('#sbmt-btn').prop("disabled", true);
@@ -1307,30 +1320,69 @@ function loadGMAP(fldName) {
 		$(".mbl_tag_btn").click(function () {
 			$(".mbl_head").removeClass('show-for-small').addClass('hide-for-small').fadeOut();
 			$(".bg-animate").removeClass('hide-for-small').addClass('show-for-small').fadeIn();
-			$('html, body').animate({
-				scrollTop: $('#anchor1').offset().top
-			}, 2000, 'linear');
+
+			attr = $('#anchor1').offset();
+			if (attr != null){
+				$('html, body').animate({
+					scrollTop: attr.top
+				}, 2000, 'linear');
+			}
 		})
 
 		$("#campaign-form").validate({
 			ignore: '',
 			rules: {
-				firstname: {
+				campaign_firstname: {
 					required: true,
+					nameStr: true,
 				},
-				email: {
+				campaign_email: {
 					required: true,
+					emailStr: true,
 				},
-				contact: {
+				campaign_contact: {
 					required: true,
+					phoneNum: true,
 				},
-				postcode: {
+				campaign_postcode: {
 					required: true,
+					postCode: true,
 				},
 			},
+			messages: {
+				campaign_firstname: {
+					required: "Please enter your first name.",
+					nameStr: "Please enter a valid name.",
+				},
+				campaign_email: {
+					required: "Please enter a valid email address.",
+					emailStr: "Please enter a valid email address.",
+				},
+				campaign_contact: {
+					required: "Please enter your contact detail.",
+					phoneNum: "Please enter a valid contact detail.",
+				},
+				campaign_postcode: {
+					required: "Please enter your post code.",
+					postCode: "Please enter a valid post code.",
+				},
+			},
+			invalidHandler: function (e, validator) {
+				var errors = validator.numberOfInvalids();
+				if (errors) {
+					var message = errors == 1 ?
+						'Found an error. Please provide the correct information.' :
+						'Found ' + errors + ' errors.  Please provide the correct information.';
+					$("#campaign-form-error span").html(message);
+					$("#campaign-form-error").removeClass('d-none');
+				} else {
+					$("#campaign-form-error").addClass('d-none');
+				}
+			},
 			onkeyup: false,
-			submitHandler: function (form) {	
-
+			onfocusout: true, 
+			focusCleanup: true,
+			submitHandler: function (form) { 
 				var str = window.location.pathname;
 				var href_url = str.substr(str.indexOf(window.location.pathname), str.length); 
 				 		
@@ -1397,6 +1449,7 @@ function loadGMAP(fldName) {
 			}
 		});
 
+		/*
 		$("#campaign-form input").blur(function () {
 			var numItems = $('#campaign-form.form-control.error').length;
 			
@@ -1410,7 +1463,7 @@ function loadGMAP(fldName) {
 			}
 
 		});
-
+		*/
 
 		$("#campaign-form2").validate({
 			ignore: '',
@@ -1500,12 +1553,21 @@ function loadGMAP(fldName) {
 		}  
 
 		$("#download_notify").click(function (e) {
-			e.preventDefault();
+			e.preventDefault(); 
 
-			$('html, body').animate({
-				scrollTop: $(".hero-calss").offset().top - 100
-			}, 500, 'linear');
+			attr = $(".hero-calss").offset();
+			if (attr != null){
+				$('html, body').animate({
+					scrollTop: attr.top - 100
+				}, 500, 'linear');
+			}   
 		})
+
+		if ($('#contact_form').length) {
+			loadGMAP('cf_address');
+		}
+
+
 	})
 
 })(jQuery);

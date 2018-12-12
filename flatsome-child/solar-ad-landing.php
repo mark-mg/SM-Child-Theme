@@ -638,6 +638,9 @@ get_header();
     }
 
     @media(max-width:500px) { 
+        .tag-title{ 
+            line-height: 30px !important; 
+        } 
         .solar-code{
             margin: 0;
             font-size: 25px;
@@ -653,10 +656,10 @@ get_header();
         .headings h3{
             font-weight: 700;
             font-size: 28px;
-            line-height: 46px;
+            line-height: 35px;
             text-align: center;
             color: rgb(255,255,255);
-            margin: 15px auto 0px; 
+            margin: 15px auto 20px;
         }
         .ebook-headings button{
             font-size: 16px !important; 
@@ -704,6 +707,7 @@ get_header();
             -o-animation: AnimationName 10s ease infinite;
             animation: AnimationName 10s ease infinite; 
         }
+        
     }
 
     @media(max-width:767px) {
@@ -818,7 +822,7 @@ get_header();
             <div class="col large-4 medium-3">&nbsp;</div>
 
             <div class="col large-4 medium-6 small-12 text-center">
-                <form class="row mb-30" method="POST" id="campaign-form">
+                <form class="row mb-30" method="POST" id="campaign-form"  name="campaign-form" >
                     <div class="form-group large-12 medium-12 small-12 headings"> 
                         <h3>FREE SOLAR <?php echo (($show_blurb =='ebook') ?  'eBOOK' : 'QUOTE'); ?></h3> 
                     </div>
@@ -828,17 +832,18 @@ get_header();
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group large-6 medium-6 small-6 pr-4">
-                        <input type="text" name="campaign_contact" id="campaign_contact" placeholder="Contact Number"
+                        <input type="tel" name="campaign_contact" id="campaign_contact" placeholder="Contact Number"
                             class="form-control round-border-input required validnumber">
                     </div>
                     <div class="form-group large-6 medium-6 small-6 pl-4">
-                        <input type="text" name="campaign_postcode" id="campaign_postcode" placeholder="Postcode"
+                        <input type="tel" name="campaign_postcode" id="campaign_postcode" placeholder="Postcode"
                             minlength="3" maxlength="4" class="form-control round-border-input required" />
                     </div>
                     <div class="clearfix"></div>
                     <div class="form-group large-12 medium-12 small-12">
                         <input type="email" name="campaign_email" id="campaign_email" placeholder="Email" class="form-control round-border-input required">
-                    </div>
+                    </div> 
+
                     <div class="clearfix"></div>
                     <div class="col medium-12 small-12 large-12 d-none" id="campaign-form-error" name="campaign-form-error">
                         <span class="error">
@@ -847,7 +852,7 @@ get_header();
                     </div>
                     <div class="clearfix"></div>
                     <div class="large-12 mt-15">
-                        <button class="grediant-button cnfm_btn font-21" id="fbform-btn2" type="submit">Get Quote</button>
+                        <button class="grediant-button cnfm_btn font-21" id="fbform-btn2" type="submit"><?php echo (($show_blurb =='ebook') ?  'Download Now' : 'Get Quote');?> </button>
                         <input type="hidden" name="campaign_action" id="action" value="Save Step 1" />
                         <input type="hidden" name="campaign_page_type" id="page_type" value="<?php echo 'residential'; ?>" />
                         <input type="hidden" name="campaign_source" id="source" value="<?php echo $source; ?>" />
@@ -868,7 +873,7 @@ get_header();
                         <h3><?php echo (($show_blurb =='ebook') ?  'Complete to Download <br>Your eBook' : 'Get Your Personal <br>Solar Quote Now'); ?></h3>                         
                     </div>
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
-                        <input type="text" name="campaign_step_address" id="campaign_step_address" placeholder="Full Address (Need to look at your roof space)"
+                        <input type="text" name="campaign_step_address" id="campaign_step_address" placeholder="Address (So we can see your roof)"
                             class="form-control round-border-input required" />
                         <input type="hidden" name="campaign_step_street_name" id="campaign_step_street_name" />
                         <input type="hidden" name="campaign_step_suburb" id="campaign_step_suburb" />
@@ -880,7 +885,7 @@ get_header();
                     <div class="clearfix"></div>
                     <div class="form-group col-md-12 col-sm-12 col-xs-12">
                         <select class="btn-select-box required" id="campaign_step_quarter_bill" name="campaign_step_quarter_bill">
-                            <option value="">How Much is Your Quaterly Electricity Bill?</option>
+                            <option value="">Your Quaterly Electricity Bill?</option>
                             <option value="< $200">
                                 < $200</option> <option value="$200 - $349">$200 - $349
                             </option>
@@ -950,8 +955,8 @@ get_header();
     <div class="code-section white-bg">
         <div class="solar-landing-container who-we-are text-center">
             <h3 class='tag-title'>WHO WE ARE</h3>
-            <p>Solar Monster is a free broker that compares solar systems. In the past, <br>
-                we’ve helped over 30,000 Australian find great rates on their power <br>
+            <p>Solar Monster is a free broker that compares solar systems. In the past, 
+                we’ve helped over 30,000 Australian find great rates on their power 
                 through Electricity Monster, and now we’re here to help you go solar!</p>
         </div>
     </div>

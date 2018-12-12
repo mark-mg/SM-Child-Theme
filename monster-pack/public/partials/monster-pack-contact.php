@@ -71,7 +71,7 @@
                         <div class="row">
                             <div class="small-12 switch1" >
                                 <div class="form-group cf-group">
-                                    <input type="text" id="cf_phone" name="cf_phone" class="form-control cf-control is-valid" required="">
+                                    <input type="tel" id="cf_phone" name="cf_phone" class="form-control cf-control is-valid" required="">
                                     <label class="form-control-placeholder cf-control-placeholder" for="cf_phone">Phone Number</label>
                                 </div>
                             </div>
@@ -86,7 +86,7 @@
                         <div class="row">
                             <div class="small-12">
                                 <div class="form-group cf-group">
-                                    <input type="text" id="cf_email" name="cf_email" class="form-control cf-control is-valid" required="">
+                                    <input type="email" id="cf_email" name="cf_email" class="form-control cf-control is-valid" required="">
                                     <label class="form-control-placeholder cf-control-placeholder" for="cf_email">Email</label>
                                 </div>
                             </div>
@@ -191,6 +191,5 @@
         </div>
     </div> 
 </section>
-<div id="map-canvas" name="map-canvas"></div>
-<script>loadGMAP('cf_address');</script>
+<div id="map-canvas" name="map-canvas"></div> 
 <!--Section: Contact v.2-->

@@ -43,13 +43,23 @@
                     <div class="col medium-12 small-12 large-12">
                         <input id="cta_firstname" name="cta_firstname" type="text" class="form-control" placeholder="First name" required="" />
                     </div> 
-                </div> 
+                </div>
+                <!--
                 <div class="row">
                     <div class="col medium-6 small-6 large-6">
-                        <input type="text" id="cta_contact" name="cta_contact" class="form-control" placeholder="Contact Number" required="" />
+                        <input id="cta_firstname" name="cta_firstname" type="text" class="form-control" placeholder="First name" required="" />
                     </div>
                     <div class="col medium-6 small-6 large-6">
-                        <input type="text" id="cta_postcode" name="cta_postcode" required="" pattern="[0-9]{4}"
+                        <input id="cta_lastname" name="cta_lastname" type="text" class="form-control" placeholder="Last name" required="" />
+                    </div>
+                </div>
+                -->
+                <div class="row">
+                    <div class="col medium-6 small-6 large-6">
+                        <input type="tel" id="cta_contact" name="cta_contact" class="form-control" placeholder="Contact Number" required="" />
+                    </div>
+                    <div class="col medium-6 small-6 large-6">
+                        <input type="tel" id="cta_postcode" name="cta_postcode" required="" pattern="[0-9]{4}"
                         class="form-control" placeholder="Post Code"/>
                     </div>
                 </div>
@@ -61,8 +71,8 @@
                 <div class="row bill-estimate">
                     <div class="col medium-12 small-12 large-12">
                         <select id="cta_quarter_bill" name="cta_quarter_bill" class="form-control" 
-                        style="border-radius: 10px;" placeholder="Your Quaterly Electricity Bill" required="">
-                            <option value="">Your Quaterly Electricity Bill</option>
+                        style="border-radius: 10px;" placeholder="How Much is Your Quaterly Electricity Bill?" required="">
+                           <option value="">Your Quarterly Electricity Bill</option>
                             <option value="< $200">&lt; $200</option>
                             <option value="$200 - $349">$200 - $349</option>
                             <option value="$350 - $599">$350 - $599</option>
