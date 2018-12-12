@@ -1347,7 +1347,40 @@ function loadGMAP(fldName) {
 				campaign_postcode: {
 					required: true,
 					postCode: true,
+<<<<<<< HEAD
 				},
+			},
+			messages: {
+				campaign_firstname: {
+					required: "Please enter your first name.",
+					nameStr: "Please enter a valid name.",
+				},
+				campaign_email: {
+					required: "Please enter a valid email address.",
+					emailStr: "Please enter a valid email address.",
+=======
+>>>>>>> d5f54b10fa7dd82db846fc449adfb6ebaeeaadd0
+				},
+				campaign_contact: {
+					required: "Please enter your contact detail.",
+					phoneNum: "Please enter a valid contact detail.",
+				},
+				campaign_postcode: {
+					required: "Please enter your post code.",
+					postCode: "Please enter a valid post code.",
+				},
+			},
+			invalidHandler: function (e, validator) {
+				var errors = validator.numberOfInvalids();
+				if (errors) {
+					var message = errors == 1 ?
+						'Found an error. Please provide the correct information.' :
+						'Found ' + errors + ' errors.  Please provide the correct information.';
+					$("#campaign-form-error span").html(message);
+					$("#campaign-form-error").removeClass('d-none');
+				} else {
+					$("#campaign-form-error").addClass('d-none');
+				}
 			},
 			messages: {
 				campaign_firstname: {
