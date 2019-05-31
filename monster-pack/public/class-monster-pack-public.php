@@ -118,6 +118,9 @@ class Monster_Pack_Public
         add_action("wp_ajax_SaveStep2", array($this, "SaveStep2"));
         add_action("wp_ajax_nopriv_SaveStep2", array($this, "SaveStep2"));
 
+        add_action("wp_ajax_SaveNote", array($this, "SaveNote"));
+        add_action("wp_ajax_nopriv_SaveNote", array($this, "SaveNote"));
+
         add_action("wp_ajax_SaveContactDetails", array($this, "SaveContactDetails"));
         add_action("wp_ajax_nopriv_SaveContactDetails", array($this, "SaveContactDetails"));
 
@@ -168,7 +171,7 @@ class Monster_Pack_Public
 
     public function load_resources()
     {
-        
+        /*
         wp_register_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/monster-pack-public.css', array(), $this->version, 'all');
         wp_enqueue_style($this->plugin_name);
 
@@ -183,14 +186,14 @@ class Monster_Pack_Public
  
         wp_register_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/monster-pack-public.js', array('jquery'), $this->version, true);
         wp_enqueue_script($this->plugin_name);  
-       
-        /*
+        */
+        
         wp_register_style($this->plugin_name, plugin_dir_url(__FILE__) . 'css/mp-plugin-styles.min.css', array(), $this->version, 'all');
         wp_enqueue_style($this->plugin_name);
 
         wp_register_script($this->plugin_name, plugin_dir_url(__FILE__) . 'js/mp-plugin-scripts.min.js', array('jquery'), $this->version, true);
         wp_enqueue_script($this->plugin_name); 
-        */
+       
 
         if(is_page('order-signoff')){
             wp_register_script('jSignature', plugin_dir_url(__FILE__) . 'js/jSignature.min.noconflict.js', array('jquery'), $this->version, true);
@@ -592,6 +595,7 @@ class Monster_Pack_Public
 
             $sql = "CREATE TABLE $table_name (
 				id int(11) NOT NULL  AUTO_INCREMENT,
+                power varchar(100) DEFAULT NULL,
 				fname text NOT NULL,
 				lname text NOT NULL,
 				email_id text NOT NULL,
@@ -616,6 +620,7 @@ class Monster_Pack_Public
                 em_ref_id int(11) DEFAULT NULL,
                 power_company  text DEFAULT NULL,
                 shifting_date datetime DEFAULT NULL,
+                note text DEFAULT NULL,
 				date_added datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
 			  	UNIQUE KEY (id)
             ) $charset_collate;";  
@@ -651,7 +656,7 @@ class Monster_Pack_Public
         $sm_lead = "";
         if (isset($_POST[$prepend . '_local'])) {
             $sm_lead = $_POST[$prepend . '_local'];
-        }
+        } 
 
         $em_lead = "";
         if (isset($_POST[$prepend . '_leadID'])) {
@@ -672,6 +677,12 @@ class Monster_Pack_Public
         }
 
         $email_id = trim($_POST[$prepend . '_email']);
+
+        $power = "";
+        if ( isset($_POST['power']) ) {
+            $power = trim($_POST['power']);
+        }
+        
 
         $postcode = $_POST[$prepend . '_postcode'];
         $postcode_details = $wpdb->get_row('SELECT * FROM sm_postcodes WHERE postcode = ' . $postcode, ARRAY_A);
@@ -714,6 +725,7 @@ class Monster_Pack_Public
         if($sm_lead == ""){
             $cnfm_details = array(
                 'service_req'   =>  $service_req,
+                'power'         =>  $power,
                 'fname'         =>  $fname,
                 'lname'         =>  $lname,
                 'email_id'      =>  $email_id,
@@ -728,7 +740,7 @@ class Monster_Pack_Public
                 'quarter_bill'   => $quarter_bill,
                 'page_src'      =>  $page_src,
                 'booking_id'    =>  $booking_id,
-                'wf_email'      =>  $wf_email,
+                'wf_email'      =>  $wf_email, 
             );
     
             $wpdb->insert($table_name, $cnfm_details);
@@ -741,6 +753,7 @@ class Monster_Pack_Public
 
         }else{
             $cnfm_details = array( 
+                'power'         =>  $power,
                 'fname'         =>  $fname, 
                 'email_id'      =>  $email_id, 
                 'mobile_phn'    =>  $phone_num, 
@@ -749,7 +762,7 @@ class Monster_Pack_Public
                 'refresh_source'=>  $refresh_source,
                 'source'        =>  $source,
                 'promo_code'    =>  $promo,  
-                'wf_email'      =>  $wf_email,
+                'wf_email'      =>  $wf_email, 
             ); 
             
             $result = $wpdb->update($table_name, $cnfm_details, array("id" => $sm_lead));
@@ -778,6 +791,7 @@ class Monster_Pack_Public
                 'action'            =>      'save_em_lead',  
                 'lead_from'         =>      'solarmonster',
                 'sm_lead_no'        =>      $test,              //--> SM DB ID
+                'power'             =>      $power,
                 'fname'             =>      $fname,
                 'lname'             =>      $lname, 
                 'email_id'          =>      $email_id,
@@ -798,6 +812,7 @@ class Monster_Pack_Public
                 'appt_date'         =>      $booking_date,
                 'appt_time'         =>      $booking_time, 
                 'estimate_bill'     =>      strtolower($quarter_bill),
+                'power'             =>      $power
             );  
 
             $ch = curl_init();
@@ -812,7 +827,7 @@ class Monster_Pack_Public
                 $response_em_id = json_decode($data);
                 $em_lead_id = $response_em_id->lead_id;
                 $wpdb->update($table_name, array("em_ref_id" => $response_em_id->lead_id), array("id" => $test));
-                $api_msg = json_encode(array("saved" => 1, "seeking_for" => $service_req, "data" => $data, "em_lead_response" => $response_em_id->lead_id, "this_em_id" => $test, 'state_name' => $state_name));
+                $api_msg = json_encode(array("saved" => 1, "seeking_for" => $service_req, "data" => $data, "em_lead_response" => $response_em_id->lead_id, "this_em_id" => $test, 'state_name' => $state_name, 'all' => $response_em_id, 'd'=> $this->api_url));
             } else {
                 $everything_is_ok = false;
                 $curl_error_msg = curl_error($ch);
@@ -919,7 +934,7 @@ class Monster_Pack_Public
             'postcode'      => $_POST[$prepend . '_step_postcode'],
             'state_name'    => $_POST[$prepend . '_step_state'],
             'shifting_date' => $shifting_date,
-            'power_company' => $power_company,
+            'power_company' => $power_company,            
         );
 
        
@@ -943,6 +958,7 @@ class Monster_Pack_Public
                 'em_lead_id'    =>  $lead_id,
                 'shifting_date' =>  $shifting_date,
                 'action'        =>  "save_em_lead_step2",
+                'lead_from'      => 'solarmonster'
             );
 
             $ch = curl_init();
@@ -990,6 +1006,7 @@ class Monster_Pack_Public
         
         die(0);
     }
+
 
     public function SaveContactDetails()
     {
@@ -1708,6 +1725,97 @@ class Monster_Pack_Public
             'power_company' => $power_company,
             'estimate_bill' => $estimate_bill,
             'action' => "save_sm_quote_step",
+            'filename' => $filename,
+            'error_msg' => $error_msg,
+        );  
+        
+        if($everything_is_ok) {
+            echo json_encode($res_data);
+        }else{
+            header('HTTP/1.1 500 Internal Server Booboo');
+            header('Content-Type: application/json; charset=UTF-8');  
+            echo json_encode('Error 400: Bad Request.['.$error_msg.']. Please try again.');  
+        } 
+        
+        die(0);
+    }
+
+    // Save Note from Solar Monster last step if exist
+    public function SaveNote() {
+        global $wpdb, $site_url, $state_list, $api_url;
+        $lead_Details = null;
+        $everything_is_ok = true;
+        $error_msg ='';
+
+        $table_name = $wpdb->prefix . 'lead_data';   
+
+        $lead_id = $_POST['this_fbsm_id']; 
+
+        $save_in_crm = $_POST['save_in_crm'];
+
+        if ($wpdb->get_var("SHOW TABLES LIKE '$table_name'") != $table_name) {
+            $error_msg = $table_name . ' is not defined.';
+            $everything_is_ok = false;
+        } else {
+            $lead_Details = $wpdb->get_row( "SELECT * FROM $table_name WHERE id = $lead_id" ); 
+        }   
+         
+
+        $note = '';
+        if(isset($_POST['note'])){
+            $note = $_POST['note'];  
+        }    
+
+        $em_lead_id = '';
+        if(isset($_POST['sm_lead_response'])){
+            $em_lead_id = $_POST['sm_lead_response'];  
+        }  
+
+        $lead_data = array(
+            'note'     =>   $note
+        ); 
+        $result = $wpdb->update($table_name, $lead_data, array("id" => $lead_id));   
+             
+        $postdata = array(
+            'em_lead_id'    =>      $em_lead_id,
+            'note'          =>      $note,
+            'action'        =>      "SMQuoteNote",
+        ); 
+        
+        $filename = '';
+        $res_data = null; 
+
+        if( isset($_POST['save_in_crm']) && $_POST['save_in_crm'] == "yes" ) {
+            
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $this->api_url);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $this->headers);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postdata)); 
+            $data = curl_exec($ch);
+            
+           
+            if(curl_errno($ch)) {
+                $everything_is_ok = false;
+                $error_msg = '[CURL]:'.curl_error($ch);
+            }else{
+                $data = (array)json_decode($data);    
+
+                if(isset($res_data['filename']))
+                    $filename =  $this->pdf_url ."/documents/solar_quotes/". $data['filename'];
+                    
+               
+            }
+            curl_close($ch);
+            
+        }      
+         
+        
+        $res_data = array(
+            'em_lead_id' => $em_lead_id,
+            'note' => $note,
+            'action' => "SMQuoteNote",
             'filename' => $filename,
             'error_msg' => $error_msg,
         );  
